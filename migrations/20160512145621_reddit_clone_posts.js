@@ -2,10 +2,11 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('posts_table', function(table){
     table.increments();
-    table.string('author_id');
     table.string('title');
     table.string('date');
+    table.string('description');
     table.string('image');
+    table.integer('score');
   })
 };
 

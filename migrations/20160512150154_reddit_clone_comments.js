@@ -2,7 +2,6 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('comments_table', function(table){
     table.increments();
-    table.integer('post_id');
     table.string('comment');
   })
 };

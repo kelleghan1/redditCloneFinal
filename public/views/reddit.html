@@ -1,1 +1,39 @@
-<h2>check</h2>
+<div ng-repeat='post in vm.postResult.data'>
+  <article>
+    <div class="imagewrap">
+      <img ng-src={{post.image}}>
+    </div>
+    <div class='infowrap'>
+      <h2>{{post.title}}</h2>
+      <p>{{post.name}}</p>
+      <p>{{post.date}}</p>
+      <p>{{post.description}}</p>
+
+      <ul>
+        <div class='commentswrap'>
+          <label><input type="checkbox" ng-model='showcomments'>Show Comments</label>
+          <div class='innercomments'ng-show='showcomments'>
+            <ul>
+              <li class='singlecomment' ng-repeat='comment in vm.commentResult.data' ng-if='post.id === comment.post_id'>
+                {{comment.comment}}
+              </li>
+            </ul>
+            <input type="button" value='Add Comment'>
+
+          </div>
+
+        </div>
+      </ul>
+
+    </div>
+
+
+  </div>
+
+
+</article>
+</div>
+
+{{vm.postResult.data}}
+<p>-----</p>
+{{vm.commentResult.data}}

@@ -1,15 +1,201 @@
 body {
+  background-color: grey;
   margin: 0;
-  padding: 0;
-  font-family: 'Helvetica'
+  font-family: "Futura"
 }
 
-a {
-  color: #00B7FF;
+a:link {
+  text-decoration: none;
+  color: grey;
 }
 
-h1 {
-  background-color: black;
+a:visited {
+  text-decoration: none;
+  color: grey;
+}
+
+a:hover {
   color: white;
+}
 
+a:active {
+  color: white;
+}
+
+ul {
+  width: 100%;
+}
+
+li {
+  width: 100%;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+td:nth-of-type(1) {
+  box-sizing: border-box;
+  width:20%;
+  text-align: right;
+
+}
+
+td:nth-of-type(2) {
+  box-sizing: border-box;
+  width:80%;
+  text-align: right;
+
+}
+
+header {
+  overflow: auto;
+  color: white;
+  background-color: black;
+  width: 100%;
+  margin: 0;
+}
+
+.none {
+  padding: 0;
+  margin: 0
+}
+
+.container {
+  background-color: white;
+  margin: 0 auto;
+  padding: 3% 5%;
+  width: 80%;
+}
+
+.invalidinput {
+  border: 1px solid red;
+}
+
+.dinline {
+  float: left;
+  display: inline-block;
+}
+
+#innerhead {
+  margin: 0 auto;
+  width: 80%
+}
+
+.innercomments {
+  padding: 10px 0 10px 5%;
+  margin: 10px 0 10px 5%;
+  width: 90%;
+}
+
+.singlecomment {
+  width: 100%;
+  margin: 0 0 10px 0;
+  padding: 10px 0 10px 5%;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border: 1px solid grey;
+}
+
+table {
+  border-collapse:collapse;
+  width: 100%;
+  max-width: 100%;
+}
+
+tr {
+  max-width: 100%;
+}
+
+table input {
+  box-sizing: border-box;
+  max-width: 100%;
+  width: 100%;
+  border: solid 1px grey;
+  border-radius: 3px;
+}
+
+.comments {
+  border: 1px solid grey;
+  border-radius: 3px;
+  padding: 10px;
+  padding-left: 15px;
+  margin: 5px 0;
+}
+.commentswrap {
+  width: 100%
+
+}
+
+.floatleft {
+  float: left;
+}
+
+textarea {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 1px;
+  border: 1px solid grey;
+  border-radius: 3px;
+  width: 100%;
+  height: 50px;
+}
+
+nav {
+  padding: 10px 0;
+  float: right;
+}
+
+nav li {
+  margin: 0 0 0 10px;
+  display: inline;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+article {
+  overflow: auto;
+  width: 100%;
+  margin: 0 0 40px;
+}
+
+.imagewrap {
+  width: 25%;
+  float: left;
+}
+
+.imagewrap img {
+  width: 100%;
+}
+
+.infowrap {
+  float: left;
+  width: 70%;
+  margin: 0 0 0 5%;
+  display: inline-block;
+}
+
+.scorewrap {
+  float: left;
+  text-align: center;
+  width: 10%;
+}
+
+.lowscore {
+  color: red;
+}
+
+.highscore {
+  color: green;
+}
+
+#searchwrap {
+  margin-bottom: 15px;
 }
