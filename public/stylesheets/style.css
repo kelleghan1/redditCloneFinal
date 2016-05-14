@@ -1,4 +1,5 @@
 body {
+  overflow: auto;
   background-color: grey;
   margin: 0;
   font-family: "Futura"
@@ -56,12 +57,16 @@ header {
   margin: 0;
 }
 
-.none {
-  padding: 0;
-  margin: 0
+input[type=button] , input[type=submit] {
+  margin: 0 0 10px 0;
+}
+
+#addpostform > label {
+  margin: 20px 0 0 0;
 }
 
 .container {
+  overflow: auto;
   background-color: white;
   margin: 0 auto;
   padding: 3% 5%;
@@ -72,20 +77,15 @@ header {
   border: 1px solid red;
 }
 
-.dinline {
-  float: left;
-  display: inline-block;
-}
-
 #innerhead {
   margin: 0 auto;
   width: 80%
 }
 
 .innercomments {
-  padding: 10px 0 10px 5%;
-  margin: 10px 0 10px 5%;
-  width: 90%;
+  padding: 10px 0 10px 0;
+  margin: 0 0 10px 0;
+  width: 100%;
 }
 
 .singlecomment {
@@ -107,7 +107,7 @@ tr {
   max-width: 100%;
 }
 
-table input {
+article input[type=text] {
   box-sizing: border-box;
   max-width: 100%;
   width: 100%;
@@ -136,7 +136,7 @@ textarea {
   max-width: 100%;
   padding: 1px;
   border: 1px solid grey;
-  border-radius: 3px;
+  border-radius: 4px;
   width: 100%;
   height: 50px;
 }

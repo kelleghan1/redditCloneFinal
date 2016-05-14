@@ -7,14 +7,18 @@ angular.module('redditClone')
   postService.all()
   .then(function(response){
     $scope.vm.postResult = response
-    console.log(response);
   })
 
   commentService.all()
   .then(function(response){
     $scope.vm.commentResult = response
-    console.log(response);
   })
 
+  $scope.submitPost = function(){
+    $scope.newpost['date'] = new Date();
+    console.log($scope.newpost);
+
+    // submitPostService.all($scope.newpost)
+  }
 
 }])
