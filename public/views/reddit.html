@@ -54,14 +54,14 @@
     <form ng-model="addpostform" ng-show="showform" ng-submit="submitPost(); postService.all(); newPost=''; showform=false">
 
       <label for="title">Title</label>
-      <input ng-model="newPost.title" ng-class="{'invalidinput': addpostform.title.$invalid && addpostform.title.$dirty}" name="title" type="text" ng-minlength=10 required>
+      <input ng-model="newPost.title" ng-class="{'invalidinput': addpostform.title.$invalid && addpostform.title.$dirty}" name="title" type="text" required>
       <span ng-show="addpostform.title.$invalid && addpostform.title.$dirty">Title is invalid</span>
 
       <label for="image">Image Url</label>
       <input ng-model="newPost.image" name="image" type="text" required>
 
       <label for="description">Description</label>
-      <textarea ng-class="{'invalidinput': addpostform.description.$invalid && addpostform.title.$dirty}" ng-model="newPost.description" name="description" ng-minlength=25 required></textarea>
+      <textarea ng-class="{'invalidinput': addpostform.description.$invalid && addpostform.title.$dirty}" ng-model="newPost.description" name="description" required></textarea>
       <span ng-show="addpostform.description.$invalid && addpostform.description.$dirty">Description is not long enough</span>
 
       <input type="submit" value="Submit">

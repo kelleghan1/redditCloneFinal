@@ -1,40 +1,56 @@
 angular.module('redditClone')
-.controller('redditController', ['$scope', 'postService', 'commentService', 'submitPostService', 'submitUserService', '$window', '$location', function($scope, postService, commentService, submitPostService, submitUserService, $window, $location) {
-  $scope.vm ={};
-  $scope.vm.postResult;
-  $scope.vm.commentResult;
+.controller('redditController', [
+  '$scope',
+  'postService',
+  'commentService',
+  'submitPostService',
+  'submitUserService',
+  'submitLoginService',
+  '$window',
+  '$location',
+  function(
+    $scope,
+    postService,
+    commentService,
+    submitPostService,
+    submitUserService,
+    submitLoginService,
+    $window,
+    $location
+  ){
 
-  postService.all()
-  .then(function(response){
-    $scope.vm.postResult = response
-  })
+    $scope.vm ={};
+    $scope.vm.postResult;
+    $scope.vm.commentResult;
 
-  commentService.all()
-  .then(function(response){
-    $scope.vm.commentResult = response
-  })
-
-  $scope.submitPost = function(){
-    $scope.newPost['date'] = new Date();
-    $scope.newPost['score'] = 0;
-    submitPostService.add($scope.newPost);
-    $scope.vm.postResult.data.push($scope.newPost);
-  }
-
-  $scope.submitUser = function(){
-    submitUserService.add($scope.newUser)
-
-  }
-
-  $scope.submitLogin = function(){
-    submitLoginService.add($scope.login)
+    postService.all()
     .then(function(response){
-      console.log(response);
+      $scope.vm.postResult = response
     })
-  }
 
-  $scope.logout = function(){
-    $window.localStorage.clear();
-  }
+    commentService.all()
+    .then(function(response){
+      $scope.vm.commentResult = response
+    })
 
-}])
+    $scope.submitPost = function(){
+      $scope.newPost['date'] = new Date();
+      $scope.newPost['score'] = 0;
+      submitPostService.add($scope.newPost);
+      $scope.vm.postResult.data.push($scope.newPost);
+    }
+
+    $scope.submitUser = function(){
+      submitUserService.add($scope.newUser)
+    }
+
+    $scope.submitLogin = function(){
+      submitLoginService.add($scope.login)
+    }
+
+    $scope.logout = function(){
+      $window.localStorage.clear();
+    }
+
+  }
+])

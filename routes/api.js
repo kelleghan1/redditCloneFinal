@@ -4,8 +4,6 @@ var knex = require("../db/knex");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-
-
 router.get('/api/posts', function(req, res, next) {
   knex('posts_table')
   .join('users_posts', 'posts_table.id', 'users_posts.post_id')
@@ -26,8 +24,8 @@ router.get('/api/comments', function(req, res, next) {
   })
 });
 
-
 router.post('/api/submitpost', function(req) {
+  console.log(req.body);
   knex('posts_table')
   .insert(req.body)
   .then(function(){
@@ -38,13 +36,13 @@ router.post('/api/submituser', function(req, res, next) {
   const errors = [];
 
   knex('users_table')
-  .where('lower(email) = ?', req.body.email.toLowerCase())
+  .where('email', req.body.email.toLowerCase())
+  .first()
   .then(function(duplicate){
+    if (duplicate){
 
-    if (duplicate.count){
-
-      errors.push('Email already exists');
-      res.json(errors)
+      errors.push({error: 'Email already exists'});
+      res.json(errors[0])
 
     }else{
 
@@ -56,16 +54,56 @@ router.post('/api/submituser', function(req, res, next) {
         email: req.body.email,
         name: req.body.name,
         password_hash: passwordHash
-
       })
       .returning('*')
-      .then(function (user) {
-
-        res.json(user[0])
-
+      .then(function (userResult) {
+        const user = userResult[0];
+        // const token = jwt.sign({ id: user.id}, process.env.JWT_SECRET);
+        res.json({
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          token: 'token'
+        })
       })
 
     }
+  })
+
+});
+
+router.post('/api/login', function(req, res, next) {
+  const errors = [];
+  var email = req.body.email;
+  var password = req.body.password;
+
+  knex('users_table')
+  .where('email', email.toLowerCase())
+  .first()
+  .then(function(user){
+
+    if (user) {
+      const saltRounds = 5;
+      const passwordHash = bcrypt.hashSync(password, saltRounds);
+
+      if (passwordHash === user.password_hash) {
+        res.json({
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          token: 'token'
+        })
+
+      }else{
+        errors.push({error: 'Password incorrect'});
+        res.json(errors[0])
+      }
+
+    }else{
+      errors.push({error: 'Email incorrect'});
+      res.json(errors[0])
+    }
+
   })
 
 });

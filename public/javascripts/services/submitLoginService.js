@@ -1,11 +1,11 @@
 angular.module('redditClone')
 
-.factory('submitUserService', function ($http, $window) {
+.factory('submitLoginService', function ($http, $window) {
   return {
-    add: function(newUser) {
-      $http.post('/api/submituser', newUser)
+    add: function(login) {
+      $http.post('/api/login', login)
       .then(function(response){
-        console.log(response);
+        // console.log(response);
         if (response.data.error) {
           console.log(response.data.error);
           return response.data.error
