@@ -5,6 +5,10 @@ body {
   font-family: "Futura"
 }
 
+p {
+  margin: 0
+}
+
 a:link {
   text-decoration: none;
   color: grey;
@@ -35,20 +39,6 @@ h3 {
   margin-top: 0;
 }
 
-td:nth-of-type(1) {
-  box-sizing: border-box;
-  width:20%;
-  text-align: right;
-
-}
-
-td:nth-of-type(2) {
-  box-sizing: border-box;
-  width:80%;
-  text-align: right;
-
-}
-
 header {
   overflow: auto;
   color: white;
@@ -69,8 +59,12 @@ input[type=button] , input[type=submit] {
   overflow: auto;
   background-color: white;
   margin: 0 auto;
-  padding: 3% 5%;
+  padding: 15px 5%;
   width: 80%;
+}
+
+#pagecontainer {
+  padding: 25px 0 0 0;
 }
 
 .invalidinput {
@@ -142,13 +136,7 @@ textarea {
 }
 
 nav {
-  padding: 10px 0;
-  float: right;
-}
-
-nav li {
-  margin: 0 0 0 10px;
-  display: inline;
+  display: block;
 }
 
 ul {
@@ -177,7 +165,7 @@ article {
 
 .infowrap {
   float: left;
-  width: 70%;
+  width: 60%;
   margin: 0 0 0 5%;
   display: inline-block;
 }

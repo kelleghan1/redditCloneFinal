@@ -10,12 +10,23 @@
   <script src="javascripts/controllers/redditController.js" type="text/javascript"></script>
   <script src="javascripts/services/postService.js" type="text/javascript"></script>
   <script src="javascripts/services/commentService.js" type="text/javascript"></script>
+  <script src="javascripts/services/submitPostService.js" type="text/javascript"></script>
+  <script src="javascripts/services/submitUserService.js" type="text/javascript"></script>
+  <script src="javascripts/services/loginService.js" type="text/javascript"></script>
 
 </head>
 <body>
 
-  <header><div id='innerhead'><h1>Reddit Clone</h1></div></header>
+  <header><div id='innerhead'><a href="/#/"><h1>Reddit Clone</h1></a></div></header>
   <div class='container'>
+    <div id='navcontainer'>
+      <nav ng-controller='redditController'>
+        <a href="/#/signup"><p>Sign Up</p></a>
+        <a href="/#/login"><p>Log In</p></a>
+        <a href="/#/"><p ng-click='logout()'>Log Out</p></a>
+
+      </nav>
+    </div>
     <ng-view></ng-view>
   </div>
 </body>

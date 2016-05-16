@@ -1,0 +1,19 @@
+<h2>Log In</h2>
+<div id='pagecontainer'>
+
+  <article style='float: right' class='infowrap'>
+
+    <form ng-model="loginForm" ng-submit="submitLogin()">
+
+      <label for="email">Email</label>
+      <input ng-model="login.email" name="image" type="text" required>
+
+      <label for="password">Password</label>
+      <input ng-model="login.password" ng-class="{'invalidinput': loginForm.password.$invalid && loginForm.title.$dirty}" name="password" type="text"required>
+      <!-- <span ng-show="loginForm.password.$invalid && loginForm.password.$dirty">Description is not long enough</span> -->
+
+      <input type="submit" value="Submit">
+
+    </form>
+  </article>
+</div>

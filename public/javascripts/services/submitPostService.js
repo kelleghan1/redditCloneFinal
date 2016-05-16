@@ -1,10 +1,9 @@
 angular.module('redditClone')
 
-.factory('submitPostService', function ($http, newpost) {
+.factory('submitPostService', function ($http) {
   return {
-    all: function(newpost) {
-      // return $http.get('/api/posts');
-      console.log(newpost);
+    add: function(newPost) {
+       $http.post('/api/submitpost', newPost);
     }
   }
 })

@@ -1,69 +1,73 @@
-<div ng-repeat='post in vm.postResult.data'>
-  <article>
-    <div class="imagewrap">
-      <img ng-src={{post.image}}>
-    </div>
-    <div class='infowrap'>
-      <h2>{{post.title}}</h2>
-      <p>{{post.name}}</p>
-      <p>{{post.date}}</p>
-      <p>{{post.description}}</p>
+<div id='pagecontainer'>
+  <div ng-repeat='post in vm.postResult.data'>
 
-      <ul>
-        <div class='commentswrap'>
-          <label><input type="checkbox" ng-model='showcomments'>Show Comments</label>
-          <div class='innercomments'ng-show='showcomments'>
-            <ul>
-              <li class='singlecomment' ng-repeat='comment in vm.commentResult.data' ng-if='post.id === comment.post_id'>
-                {{comment.comment}}
-              </li>
-            </ul>
+    <article>
+      <div class="imagewrap">
+        <img ng-src={{post.image}}>
+      </div>
 
-            <input type="button" class="floatleft" ng-click="showme=true" value="Add Comment">
-            <div ng-show="showme">
-              <form ng-submit="newComment=''">
-                <textarea ng-model="newComment" required></textarea>
-                <input type="submit" ng-click="showme=false">
-                <input type="button" ng-click="showme=false" value="Cancel">
-              </form>
+      <div class='infowrap'>
+        <h2>{{post.title}}</h2>
+        <p ng-if='post.name'>{{post.name}}</p>
+        <p>{{post.date}}</p>
+        <p>{{post.description}}</p>
+
+        <ul>
+          <div class='commentswrap'>
+            <label><input type="checkbox" ng-model='showcomments'>Show Comments</label>
+            <div class='innercomments'ng-show='showcomments'>
+              <ul>
+                <li class='singlecomment' ng-repeat='comment in vm.commentResult.data' ng-if='post.id === comment.post_id'>
+                  {{comment.comment}}
+                </li>
+              </ul>
+
+              <input type="button" class="floatleft" ng-click="showme=true" value="Add Comment">
+              <div ng-show="showme">
+                <form ng-submit="newComment=''">
+                  <textarea ng-model="newComment" required></textarea>
+                  <input type="submit" ng-click="showme=false">
+                  <input type="button" ng-click="showme=false" value="Cancel">
+                </form>
+              </div>
             </div>
-
           </div>
+        </ul>
 
-        </div>
-      </ul>
+      </div>
+
+      <div class="scorewrap">
+        <div ng-click="post.score = post.score + 1; submitScore()"><img style="width: 15px" src="./images/upvote.png"></div>
+        <span ng-class="{'lowscore':post.score<0, 'highscore':post.score>0}">{{post.score}}</span>
+        <div ng-click="post.score = post.score - 1"><img style="width: 15px" src="./images/downvote.png"></div>
+      </div>
 
     </div>
 
 
-  </div>
+
+  </article>
+
+  <article style='float: right' class='infowrap'>
+    <input ng-click="showform=true" type="button" value="Add a post">
+
+    <form ng-model="addpostform" ng-show="showform" ng-submit="submitPost(); postService.all(); newPost=''; showform=false">
+
+      <label for="title">Title</label>
+      <input ng-model="newPost.title" ng-class="{'invalidinput': addpostform.title.$invalid && addpostform.title.$dirty}" name="title" type="text" ng-minlength=10 required>
+      <span ng-show="addpostform.title.$invalid && addpostform.title.$dirty">Title is invalid</span>
+
+      <label for="image">Image Url</label>
+      <input ng-model="newPost.image" name="image" type="text" required>
+
+      <label for="description">Description</label>
+      <textarea ng-class="{'invalidinput': addpostform.description.$invalid && addpostform.title.$dirty}" ng-model="newPost.description" name="description" ng-minlength=25 required></textarea>
+      <span ng-show="addpostform.description.$invalid && addpostform.description.$dirty">Description is not long enough</span>
+
+      <input type="submit" value="Submit">
+      <input type="button" ng-click="showform=false" value="Cancel">
 
 
-</article>
+    </form>
+  </article>
 </div>
-
-<article style='float: right' class='infowrap'>
-  <input ng-click="showform=true" type="button" value="Add a post">
-
-  <form ng-model="addpostform" ng-show="showform" ng-submit="submitPost()">
-
-    <label for="title">Title</label>
-    <input ng-model="newpost.title" ng-class="{'invalidinput': addpostform.title.$invalid && addpostform.title.$dirty}" name="title" type="text" ng-minlength=10 required>
-    <span ng-show="addpostform.title.$invalid && addpostform.title.$dirty">Title is invalid</span>
-
-    <label for="author">Author</label>
-    <input ng-model="newpost.author" name="author" type="text" required>
-
-    <label for="image">Image Url</label>
-    <input ng-model="newpost.image" name="image" type="text" required>
-
-    <label for="description">Description</label>
-    <textarea ng-class="{'invalidinput': addpostform.description.$invalid && addpostform.title.$dirty}" ng-model="newpost.description" name="description" ng-minlength=25 required></textarea>
-    <span ng-show="addpostform.description.$invalid && addpostform.description.$dirty">Description is not long enough</span>
-
-    <input type="submit" value="Submit">
-    <input type="button" ng-click="showform=false" value="Cancel">
-
-
-  </form>
-</article>

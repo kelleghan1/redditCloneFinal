@@ -1,5 +1,5 @@
 angular.module('redditClone')
-.controller('redditController', ['$scope', 'postService', 'commentService', function($scope, postService, commentService) {
+.controller('redditController', ['$scope', 'postService', 'commentService', 'submitPostService', 'submitUserService', '$window', '$location', function($scope, postService, commentService, submitPostService, submitUserService, $window, $location) {
   $scope.vm ={};
   $scope.vm.postResult;
   $scope.vm.commentResult;
@@ -15,10 +15,26 @@ angular.module('redditClone')
   })
 
   $scope.submitPost = function(){
-    $scope.newpost['date'] = new Date();
-    console.log($scope.newpost);
+    $scope.newPost['date'] = new Date();
+    $scope.newPost['score'] = 0;
+    submitPostService.add($scope.newPost);
+    $scope.vm.postResult.data.push($scope.newPost);
+  }
 
-    // submitPostService.all($scope.newpost)
+  $scope.submitUser = function(){
+    submitUserService.add($scope.newUser)
+
+  }
+
+  $scope.submitLogin = function(){
+    submitLoginService.add($scope.login)
+    .then(function(response){
+      console.log(response);
+    })
+  }
+
+  $scope.logout = function(){
+    $window.localStorage.clear();
   }
 
 }])
